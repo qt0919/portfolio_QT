@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Full-Stack & Mobile Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --bg-light: #f3f4f6;
+            --border: #e5e7eb;
+            --white: #ffffff;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #e5e7eb;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: var(--white);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Header */
+        .cv-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-info h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header-info .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .header-contact {
+            text-align: right;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item i {
+            width: 16px;
+            opacity: 0.8;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .cv-body {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+        }
+
+        .main-content {
+            padding: 30px 35px;
+        }
+
+        .sidebar {
+            background: var(--bg-light);
+            padding: 30px 25px;
+            border-left: 1px solid var(--border);
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Summary */
+        .summary p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        /* Experience & Projects */
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .item-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .item-subtitle {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .item-date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-bottom: 8px;
+        }
+
+        .item-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--text-medium);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .item-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .item-list li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-bottom: 5px;
+        }
+
+        .item-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Sidebar Skills */
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category-title i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-item {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text-medium);
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 15px;
+        }
+
+        .education-degree {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .education-school {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .education-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Languages */
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .language-name {
+            color: var(--text-dark);
+        }
+
+        .language-level {
+            color: var(--text-light);
+        }
+
+        /* Links */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-medium);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .link-item:hover {
+            color: var(--primary);
+        }
+
+        .link-item i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+        <header class="cv-header">
+            <div class="header-info">
+                <h1>Qian Thong Ng</h1>
+                <p class="title">Full-Stack Developer | Mobile Developer | AI Enthusiast</p>
+            </div>
+            <div class="header-contact">
+                <div class="contact-item">
+                    <span>qianthong2003@gmail.com</span>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-item">
+                    <span>+60 16-660 0633</span>
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-item">
+                    <span>Kuala Lumpur, Malaysia</span>
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-item">
+                    <a href="https://github.com/qt0919">github.com/qt0919</a>
+                    <i class="fab fa-github"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="cv-body">
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Professional Summary -->
+                <section class="section summary">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <p>
+                        Results-driven Full-Stack and Mobile Developer with hands-on experience building modern web applications, 
+                        cross-platform mobile apps, and AI-powered solutions. Proficient in React/Next.js, TypeScript, Flutter, 
+                        and Python. Demonstrated ability to work effectively in agile teams using industry-standard tools like 
+                        Jira and Docker. Passionate about creating user-centric digital experiences and continuously learning 
+                        emerging technologies.
+                    </p>
+                </section>
+
+                <!-- Projects -->
+                <section class="section">
+                    <h2 class="section-title">Projects</h2>
+                    
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title">HomeSchool Hub - E-Learning Platform</h3>
+                                <p class="item-subtitle">Web Application</p>
+                            </div>
+                            <span class="item-date">Dec 2025</span>
+                        </div>
+                        <p class="item-description">
+                            Modern e-learning platform with student/admin dashboards, course management, 
+                            enrollment tracking with payment status, dark mode, and responsive design.
+                        </p>
+                        <div class="item-tech">
+                            <span class="tech-tag">Next.js 14</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title">Landscape Designer AI</h3>
+                                <p class="item-subtitle">AI-Powered Web App</p>
+                            </div>
+                            <span class="item-date">Nov 2025</span>
+                        </div>
+                        <p class="item-description">
+                            AI garden design tool integrating Google Gemini API. Features image upload, 
+                            intelligent plant identification, and personalized landscape suggestions.
+                        </p>
+                        <div class="item-tech">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Vite</span>
+                            <span class="tech-tag">Gemini AI API</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title">Record & Summarize App</h3>
+                                <p class="item-subtitle">Cross-Platform Mobile App</p>
+                            </div>
+                            <span class="item-date">2025</span>
+                        </div>
+                        <p class="item-description">
+                            Flutter-based mobile application with AI integration for recording audio 
+                            and generating intelligent summaries. Ideal for lectures and meetings.
+                        </p>
+                        <div class="item-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Dart</span>
+                            <span class="tech-tag">AI/ML</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title">UniHub - University Platform</h3>
+                                <p class="item-subtitle">Team Project</p>
+                            </div>
+                            <span class="item-date">2025</span>
+                        </div>
+                        <p class="item-description">
+                            Collaborative university platform built with a team using agile methodology. 
+                            Features OAuth authentication, MySQL backend, Docker containerization, and GitLab for version control.
+                        </p>
+                        <div class="item-tech">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">OAuth</span>
+                            <span class="tech-tag">Jira</span>
+                            <span class="tech-tag">GitLab</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Team Experience -->
+                <section class="section">
+                    <h2 class="section-title">Final Year Project</h2>
+                    
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title">AI-Powered Note-Taking App</h3>
+                                <p class="item-subtitle">Android Application</p>
+                            </div>
+                            <span class="item-date">2025 - 2026</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Developed a comprehensive Android productivity app with AI-powered features using Kotlin and Jetpack Compose</li>
+                            <li>Integrated Google Gemini AI for conversational chat, smart event extraction, and natural language processing</li>
+                            <li>Implemented voice authentication system for biometric-style security with custom voice print enrollment</li>
+                            <li>Built real-time cloud sync with Firebase Authentication and Realtime Database</li>
+                            <li>Integrated Google Calendar API for event management and smart date parsing</li>
+                            <li>Applied MVVM architecture pattern with clean separation of concerns</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Technical Skills -->
+                <section class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-code"></i> Frontend
+                        </h3>
+                        <div class="skill-list">
+                            <span class="skill-item">React</span>
+                            <span class="skill-item">Next.js</span>
+                            <span class="skill-item">TypeScript</span>
+                            <span class="skill-item">TailwindCSS</span>
+                            <span class="skill-item">HTML5/CSS3</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-server"></i> Backend
+                        </h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">Flask</span>
+                            <span class="skill-item">Node.js</span>
+                            <span class="skill-item">SQL</span>
+                            <span class="skill-item">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-mobile-alt"></i> Mobile
+                        </h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Flutter</span>
+                            <span class="skill-item">Dart</span>
+                            <span class="skill-item">Android Studio</span>
+                            <span class="skill-item">Kotlin</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-tools"></i> Tools & DevOps
+                        </h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Git/GitHub</span>
+                            <span class="skill-item">Docker</span>
+                            <span class="skill-item">Jira</span>
+                            <span class="skill-item">Vercel</span>
+                            <span class="skill-item">VS Code</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-brain"></i> AI/ML
+                        </h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Gemini API</span>
+                            <span class="skill-item">OpenAI API</span>
+                            <span class="skill-item">Prompt Engineering</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <p class="education-degree">BSc (Hons) Computer Science - First Class</p>
+                        <p class="education-school">University of the West of England, Bristol (UWE)</p>
+                        <p class="education-date">2022 - 2026</p>
+                    </div>
+                </section>
+
+                <!-- Languages -->
+                <section class="section">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="language-level">Fluent</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Chinese</span>
+                        <span class="language-level">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Malay</span>
+                        <span class="language-level">Conversational</span>
+                    </div>
+                </section>
+
+                <!-- Links -->
+                <section class="section">
+                    <h2 class="section-title">Links</h2>
+                    <div class="links-list">
+                        <a href="https://github.com/qt0919" class="link-item" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub Profile</span>
+                        </a>
+                        <a href="https://homeschool-demo.vercel.app" class="link-item" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>HomeSchool Hub</span>
+                        </a>
+                        <a href="https://landscapingdesign.vercel.app" class="link-item" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>Landscape AI</span>
+                        </a>
+                        <a href="https://github.com/qt0919/FYP" class="link-item" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>Final Year Project</span>
+                        </a>
+                        <a href="https://linkedin.com" class="link-item" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-btn no-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Print / Save PDF
+    </button>
+</body>
+</html>
