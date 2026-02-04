@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter - Full-Stack & Mobile Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --bg-light: #f3f4f6;
+            --border: #e5e7eb;
+            --white: #ffffff;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: #e5e7eb;
+        }
+
+        .letter-container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: var(--white);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 50px 60px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .letter-container {
+                margin: 0;
+                box-shadow: none;
+                padding: 40px 50px;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Header */
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .sender-info h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .sender-info p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        .contact-item a {
+            color: var(--text-medium);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Date & Recipient */
+        .date {
+            margin-bottom: 25px;
+            color: var(--text-medium);
+        }
+
+        .recipient {
+            margin-bottom: 25px;
+        }
+
+        .recipient p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .recipient .company {
+            font-weight: 600;
+        }
+
+        /* Subject */
+        .subject {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Body */
+        .letter-body p {
+            margin-bottom: 18px;
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .letter-body strong {
+            color: var(--text-dark);
+        }
+
+        .highlight-list {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .highlight-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        .highlight-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Signature */
+        .signature {
+            margin-top: 35px;
+        }
+
+        .signature .closing {
+            margin-bottom: 40px;
+            color: var(--text-medium);
+        }
+
+        .signature .name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .signature .title {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+        }
+
+        /* Editable hints */
+        .editable {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-style: italic;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Instructions box */
+        .instructions {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+            color: #1e40af;
+        }
+
+        .instructions strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-container">
+        
+        <!-- Instructions (won't print) -->
+        <div class="instructions no-print">
+            <strong>📝 How to customize this cover letter:</strong>
+            Replace the yellow highlighted text with your actual information. 
+            Press Ctrl+P (or click the button) to print or save as PDF.
+        </div>
+
+        <!-- Header -->
+        <header class="letter-header">
+            <div class="sender-info">
+                <h1>Qian Thong Ng</h1>
+                <p>Full-Stack & Mobile Developer</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>qianthong2003@gmail.com</span>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-item">
+                    <span>+60 16-660 0633</span>
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-item">
+                    <a href="https://github.com/qt0919">github.com/qt0919</a>
+                    <i class="fab fa-github"></i>
+                </div>
+                <div class="contact-item">
+                    <span>Kuala Lumpur, Malaysia</span>
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Date -->
+        <p class="date">January 15, 2026</p>
+
+        <!-- Recipient -->
+        <div class="recipient">
+            <p class="company"><span class="editable">[Hiring Manager's Name]</span></p>
+            <p><span class="editable">[Company Name]</span></p>
+            <p><span class="editable">[Company Address]</span></p>
+        </div>
+
+        <!-- Subject -->
+        <p class="subject">
+            Re: Application for <span class="editable">[Position Title]</span> Position
+        </p>
+
+        <!-- Body -->
+        <div class="letter-body">
+            <p>Dear <span class="editable">[Hiring Manager's Name / Hiring Team]</span>,</p>
+
+            <p>
+                I am writing to express my strong interest in the <span class="editable">[Position Title]</span> 
+                position at <span class="editable">[Company Name]</span>. As a passionate Full-Stack and Mobile Developer 
+                with hands-on experience in modern web technologies, cross-platform mobile development, and AI integration, 
+                I am excited about the opportunity to contribute to your team and help build innovative solutions.
+            </p>
+
+            <p>
+                Throughout my academic journey and personal projects, I have developed a strong foundation in 
+                <strong>React/Next.js, TypeScript, Python, and Flutter</strong>. I have successfully built and deployed 
+                multiple production-ready applications, including:
+            </p>
+
+            <ul class="highlight-list">
+                <li>
+                    <strong>HomeSchool Hub</strong> – A comprehensive e-learning platform built with Next.js 14, 
+                    featuring student/admin dashboards, course management, and responsive design
+                </li>
+                <li>
+                    <strong>Landscape Designer AI</strong> – An AI-powered web application integrating Google Gemini API 
+                    for intelligent garden design suggestions
+                </li>
+                <li>
+                    <strong>Record & Summarize App</strong> – A Flutter mobile application with AI capabilities 
+                    for audio recording and intelligent summarization
+                </li>
+            </ul>
+
+            <p>
+                During my Final Year Project, I gained valuable experience working in an <strong>agile team environment</strong>, 
+                utilizing <strong>Jira</strong> for sprint planning and task management, and <strong>Docker</strong> for 
+                containerization. This experience taught me the importance of effective communication, code reviews, 
+                and collaborative problem-solving in delivering quality software.
+            </p>
+
+            <p>
+                What excites me most about <span class="editable">[Company Name]</span> is 
+                <span class="editable">[mention something specific about the company - their products, mission, culture, or recent achievements]</span>. 
+                I am confident that my technical skills, enthusiasm for learning, and commitment to writing clean, 
+                maintainable code would make me a valuable addition to your team.
+            </p>
+
+            <p>
+                I would welcome the opportunity to discuss how my background, skills, and passion align with your needs. 
+                Thank you for considering my application. I look forward to hearing from you.
+            </p>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature">
+            <p class="closing">Sincerely,</p>
+            <p class="name">Qian Thong Ng</p>
+            <p class="title">Full-Stack & Mobile Developer</p>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-btn no-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Print / Save PDF
+    </button>
+</body>
+</html>
