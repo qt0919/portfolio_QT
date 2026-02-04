@@ -337,36 +337,48 @@
         }
 
         /* ===========================================
-           Mobile - Scale like PDF view
+           Mobile - Scale like PDF view (centered)
            =========================================== */
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
             body {
-                background: var(--bg-light);
+                background: #374151;
+                padding: 10px;
+                overflow-x: hidden;
             }
 
             .cv-container {
-                width: 210mm;
-                transform-origin: top center;
-                transform: scale(0.45);
-                margin: 10px auto;
-                margin-bottom: -55%;
+                width: 793px; /* A4 width in pixels at 96dpi */
+                transform-origin: top left;
+                margin: 0;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             }
-        }
 
-        @media (max-width: 600px) {
-            .cv-container {
-                transform: scale(0.38);
-                margin-bottom: -60%;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .cv-container {
-                transform: scale(0.32);
-                margin-bottom: -65%;
+            .print-btn {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                z-index: 1000;
             }
         }
     </style>
+    <script>
+        // Scale CV to fit mobile viewport like a PDF
+        function scaleCVForMobile() {
+            const cv = document.querySelector('.cv-container');
+            if (window.innerWidth <= 850) {
+                const scale = (window.innerWidth - 20) / 793;
+                cv.style.transform = `scale(${scale})`;
+                cv.style.marginBottom = `-${cv.offsetHeight * (1 - scale)}px`;
+            } else {
+                cv.style.transform = '';
+                cv.style.marginBottom = '';
+            }
+        }
+        window.addEventListener('load', scaleCVForMobile);
+        window.addEventListener('resize', scaleCVForMobile);
+    </script>
 </head>
 <body>
     <div class="cv-container">
